@@ -150,6 +150,13 @@ different sets of packages."""
         help="do not display progress bar",
     )
     p.add_argument(
+        "--no-compile-missing-pyc",
+        action="store_false",
+        help="Do not compile missing .pyc files in post processing",
+        dest='compile_missing_pyc',
+        default=True,
+    )
+    p.add_argument(
         '--python',
         action="append",
         help="""Set the Python version used by conda build. Can be passed
@@ -398,7 +405,7 @@ def execute(args, parser):
                         continue
                     build.build(m, verbose=not args.quiet, post=post,
                         channel_urls=channel_urls,
-                        override_channels=args.override_channels, include_recipe=args.include_recipe)
+                        override_channels=args.override_channels, include_recipe=args.include_recipe, compile_missing_pyc=args.compile_missing_pyc)
                 except (RuntimeError, SystemExit) as e:
                     error_str = str(e)
                     if error_str.startswith('No packages found') or error_str.startswith('Could not find some'):
