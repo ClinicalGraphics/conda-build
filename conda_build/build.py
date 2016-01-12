@@ -321,7 +321,7 @@ def bldpkg_path(m):
     return join(config.bldpkgs_dir, '%s.tar.bz2' % m.dist())
 
 def build(m, get_src=True, verbose=True, post=None, channel_urls=(),
-    override_channels=False, include_recipe=True):
+    override_channels=False, include_recipe=True, compile_missing_pyc=True):
     '''
     Build the package with the specified metadata.
 
@@ -447,7 +447,7 @@ def build(m, get_src=True, verbose=True, post=None, channel_urls=(),
         assert not exists(config.info_dir)
         files2 = prefix_files()
 
-        post_process(sorted(files2 - files1), preserve_egg_dir=bool(m.get_value('build/preserve_egg_dir')))
+        post_process(sorted(files2 - files1), preserve_egg_dir=bool(m.get_value('build/preserve_egg_dir')), compile_missing_pyc=compile_missing_pyc)
 
         # The post processing may have deleted some files (like easy-install.pth)
         files2 = prefix_files()

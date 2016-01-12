@@ -150,9 +150,9 @@ different sets of packages."""
         help="do not display progress bar",
     )
     p.add_argument(
-        "--no-compile-missing-pyc",
+        "--skip-compile-missing-pyc",
         action="store_false",
-        help="Do not compile missing .pyc files in post processing",
+        help="Skip compilation of missing .pyc files",
         dest='compile_missing_pyc',
         default=True,
     )

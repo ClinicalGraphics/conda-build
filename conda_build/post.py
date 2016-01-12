@@ -144,10 +144,10 @@ def compile_missing_pyc():
                            '-q', '-x', 'port_v3', sp_dir])
 
 
-def post_process(files, preserve_egg_dir=False):
+def post_process(files, preserve_egg_dir=False, compile_missing_pyc=True):
     remove_easy_install_pth(files, preserve_egg_dir=preserve_egg_dir)
     rm_py_along_so()
-    if config.CONDA_PY < 30:
+    if compile_missing_pyc and config.CONDA_PY < 30:
         compile_missing_pyc()
 
 
