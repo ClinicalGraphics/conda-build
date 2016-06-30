@@ -2,8 +2,9 @@ import sys
 import os
 from os.path import join
 
+
 def main():
-    prefix = os.environ['PREFIX']
+    prefix = os.environ['PREFIX'].replace("\\", "/")
 
     with open(join(prefix, 'automatic-prefix')) as f:
         data = f.read()
